@@ -210,8 +210,6 @@ font-size:28px;
 
 <body>
 
-<!-- STARTSEITE -->
-
 <div id="startScreen">
 
 <button class="startButton learnBtn" onclick="startGame('learn')">Lernen</button>
@@ -224,8 +222,6 @@ font-size:28px;
 
 </div>
 
-<!-- HIGHSCORE -->
-
 <div id="highscoreScreen">
 
 <h1>🏆 Klassen Highscore</h1>
@@ -235,8 +231,6 @@ font-size:28px;
 <button class="bigButton" onclick="closeHighscores()">Schließen</button>
 
 </div>
-
-<!-- SPIEL -->
 
 <div id="game">
 
@@ -259,8 +253,6 @@ font-size:28px;
 
 </div>
 
-<!-- ENDSCREEN -->
-
 <div id="endScreen">
 
 <div class="endBox">
@@ -271,7 +263,7 @@ font-size:28px;
 
 <input id="nameInput" placeholder="Dein Name">
 
-<button class="bigButton" onclick="saveScore()">Score speichern</button>
+<button class="bigButton" onclick="saveScore()" id="saveButton">Score speichern</button>
 
 <div id="highscoreEnd"></div>
 
@@ -280,8 +272,6 @@ font-size:28px;
 </div>
 
 </div>
-
-<!-- AUDIO -->
 
 <audio id="nachtigall" src="nachtigall.mp3"></audio> <audio id="amsel" src="amsel.mp3"></audio> <audio id="rotkehlchen" src="rotkehlchen.mp3"></audio> <audio id="halsbandsittich" src="halsbandsittich.mp3"></audio> <audio id="kanadagans" src="kanadagans.mp3"></audio> <audio id="kohlmeise" src="kohlmeise.mp3"></audio> <audio id="ringeltaube" src="ringeltaube.mp3"></audio> <audio id="star" src="star.mp3"></audio> <audio id="stockente" src="stockente.mp3"></audio> <audio id="turmfalke" src="turmfalke.mp3"></audio>
 
@@ -300,6 +290,7 @@ let points=0;
 let rounds=0;
 let maxRounds=15;
 let mode="quiz";
+let scoreSaved=false;
 
 function capitalize(t){
 return t.charAt(0).toUpperCase()+t.slice(1);
@@ -310,6 +301,7 @@ function startGame(selectedMode){
 mode=selectedMode;
 points=0;
 rounds=0;
+scoreSaved=false;
 
 document.getElementById("startScreen").style.display="none";
 document.getElementById("game").style.display="block";
@@ -446,9 +438,12 @@ loadHighscoreEnd();
 
 function saveScore(){
 
-let name=document.getElementById("nameInput").value.trim();
+if(scoreSaved) return;
 
+let name=document.getElementById("nameInput").value.trim();
 if(!name) return;
+
+scoreSaved=true;
 
 fetch(SCRIPT_URL,{
 method:"POST",
@@ -457,6 +452,8 @@ name:name,
 score:points
 })
 });
+
+document.getElementById("saveButton").innerText="Gespeichert ✔";
 
 setTimeout(loadHighscoreEnd,800);
 
