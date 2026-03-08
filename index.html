@@ -1,15 +1,15 @@
 <!DOCTYPE html>
+
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vogelstimmen Trainer</title>
 
-<!-- PWA / App Icon -->
+<!-- App Icon -->
 <link rel="icon" type="image/png" href="Logo.png">
 <link rel="apple-touch-icon" href="Logo.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Vogelstimmen">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#1a1a2e">
@@ -25,16 +25,6 @@ font-family:'Poppins',sans-serif;
 text-align:center;
 background:#f0f0f0;
 }
-
-/* LOGO */
-.startLogo {
-width: clamp(100px, 22vw, 160px);
-height: auto;
-animation: bob 3s ease-in-out infinite;
-filter: drop-shadow(0 4px 18px rgba(0,0,0,0.4));
-margin-bottom: 10px;
-}
-@keyframes bob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
 
 /* STARTSEITE */
 
@@ -235,8 +225,6 @@ font-size:28px;
 <body>
 
 <div id="startScreen">
-
-<img src="Logo.png" class="startLogo" alt="Vogelstimmen Logo">
 
 <button class="startButton learnBtn" onclick="startGame('learn')">Lernen</button>
 
